@@ -18,7 +18,7 @@ class GarageDoorOpener {
     this.openCloseTime = config.openCloseTime || 0;
     this.openingTime = config.openingTime || this.openCloseTime;
     this.closureTime = config.closureTime || this.openingTime;
-    this.doorRelayPin = this.relayNumberToGPIO(config.doorRelayPin);
+    this.doorRelayPin = config.doorRelayPin;
     this.timeBeforeClosure = config.timeBeforeClosure || 0;
 
     this.currentDoorState = CurrentDoorState.CLOSED;
@@ -33,7 +33,7 @@ class GarageDoorOpener {
   openCloseGarage(callback) {
 
     request.get({
-      url: 'http://' + this.ip + '/control?cmd=Pulse,' + this.doorRelayPin + ',1,500' /*+ (cmd || 'Signal')*/,
+      url: 'http://' + this.ip + '/cm?cmnd=Power' + this.doorRelayPin + ',1,500' /*+ (cmd || 'Signal')*/,
       timeout: 120000
     }, (error, response, body) => {
       this.log.debug('openCloseGarage',response.statusCode,body);
@@ -166,21 +166,6 @@ class GarageDoorOpener {
       return 'CLOSING';
     default:
       return 'UNKNOWN';
-    }
-  }
-  // Relay number to GPIO number, I don't know if they are the same for every Sonoff
-  relayNumberToGPIO(relay) {
-    switch (relay) {
-    case 1:
-      return 12;
-    case 2:
-      return 5;
-    case 3:
-      return 4;
-    case 4:
-      return 15;
-    default:
-      return 12;
     }
   }
 
