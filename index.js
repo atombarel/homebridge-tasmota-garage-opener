@@ -2,7 +2,7 @@ var request = require('request');
 
 let Service, Characteristic, TargetDoorState, CurrentDoorState;
 
-module.exports = function(homebridge) {
+module.exports = function (homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
   TargetDoorState = Characteristic.TargetDoorState;
@@ -29,14 +29,14 @@ class GarageDoorOpener {
     this.log('Identify requested!');
     callback(null);
   }
-  //Pulse,15,1,1000
+  
   openCloseGarage(callback) {
 
     request.get({
-      url: 'http://' + this.ip + '/cm?user=admin&password=' + this.password + 'cmnd=Power' + this.doorRelayPin + ',1,500',
+      url: 'http://' + this.ip + '/cm?user=admin&password=' + this.password + '&cmnd=Power' + this.doorRelayPin,
       timeout: 120000
     }, (error, response, body) => {
-      this.log.debug('openCloseGarage',response.statusCode,body);
+      this.log.debug('openCloseGarage', response.statusCode, body);
       if (!error && response.statusCode == 200) {
         //this.log.debug('Response: %s', body);
         callback();
@@ -154,18 +154,18 @@ class GarageDoorOpener {
 
   doorStateToString(state) {
     switch (state) {
-    case CurrentDoorState.OPEN:
-      return 'OPEN';
-    case CurrentDoorState.CLOSED:
-      return 'CLOSED';
-    case CurrentDoorState.STOPPED:
-      return 'STOPPED';
-    case CurrentDoorState.OPENING:
-      return 'OPENING';
-    case CurrentDoorState.CLOSING:
-      return 'CLOSING';
-    default:
-      return 'UNKNOWN';
+      case CurrentDoorState.OPEN:
+        return 'OPEN';
+      case CurrentDoorState.CLOSED:
+        return 'CLOSED';
+      case CurrentDoorState.STOPPED:
+        return 'STOPPED';
+      case CurrentDoorState.OPENING:
+        return 'OPENING';
+      case CurrentDoorState.CLOSING:
+        return 'CLOSING';
+      default:
+        return 'UNKNOWN';
     }
   }
 
