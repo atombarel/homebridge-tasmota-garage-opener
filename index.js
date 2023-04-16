@@ -33,7 +33,7 @@ class GarageDoorOpener {
   openCloseGarage(callback) {
 
     request.get({
-      url: 'http://' + this.ip + '/cm?cmnd=Power' + this.doorRelayPin + ',1,500' /*+ (cmd || 'Signal')*/,
+      url: 'http://' + this.ip + '/cm?user=admin&password=' + this.password + 'cmnd=Power' + this.doorRelayPin + ',1,500',
       timeout: 120000
     }, (error, response, body) => {
       this.log.debug('openCloseGarage',response.statusCode,body);

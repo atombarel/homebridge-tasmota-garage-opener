@@ -1,6 +1,6 @@
 {
   "name": "homebridge-tasmota-garage-opener",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Homebridge plugin for Sonoff-4CH running tasmota to open garage doors and gates with the Garage UI on the HomeKit App",
   "main": "index.js",
   "engines": {

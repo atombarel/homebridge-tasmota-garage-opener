@@ -1,11 +1,10 @@
-# Homebridge Sonoff Garage Door Opener
+# Homebridge Tasmota Garage Door Opener
 
-This is a [homebridge](https://github.com/nfarina/homebridge) plugin to connect with a Sonoff Relay Board with ESPEasy firmware into a Garage Door Opener via the Home app on iOS using Homekit.
+This is a [homebridge](https://github.com/nfarina/homebridge) plugin to connect with a Sonoff Relay Board with Tasmota firmware into a Garage Door Opener via the Home app on iOS using Homekit.
 
 ![](sonoff-garage-opener.gif)
 
-I created this because there wasn't another plugin for Sonoff-4CH Pro with ESPEasy with the Garage Door interface/features.
-I think it could work with every other Sonoff version with ESPEasy but it should be tested.
+I created this because there wasn't another plugin for Sonoff-4CH Pro with Tasmota with the Garage Door interface/features.
 
 Features are:
 
@@ -33,6 +32,7 @@ Just add the following config to your homebridge config file located at this (de
       "accessory": "Sonoff Garage Door Opener",
       "name": "Pi Garage Opener",
       "ip": "192.168.2.75",
+      "password": "yourpassword",
       "doorRelayPin": 4,
       "openCloseTime": 30000,
       "openingTime": 27000,
